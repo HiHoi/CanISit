@@ -16,7 +16,7 @@ var_data.time = '';
 var_data.data = [];
 var_data.image = '';
 
-function check_vaild_ip(subnetIp, req){ // npm i request-ip
+function checkVaildIp(subnetIp, req){ // npm i request-ip
     const requestIp = require('request-ip');
     let guestIp = requestIp.getClientIp(req);
     return(guestIp.startsWith(subnetIp));
@@ -25,7 +25,7 @@ function check_vaild_ip(subnetIp, req){ // npm i request-ip
 app.set('port', process.env.PORT || 4000);
 
 var logger = function (req, res, next) {
-    console.log(`[Connect] : ${req.ip}, ${req.method}, ${req.path}`);
+    console.log(`\x1b[34m[Connect]\x1b[0m : ${req.ip}, ${req.method}, ${req.path}`);
     next();
 };
 
@@ -36,10 +36,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/data', (req, res) => {
-    var_data.data = [{"x":0,"y":0,"type":"chair"},{"x":700,"y":500,"type":"table"},{"x":102,"y":30,"type":"sitting"},{"x":502,"y":430,"type":"chair"},{"x":351,"y":120,"type":"table"}, {"x":650,"y":450,"type":"table"},{"x":0,"y":0,"type":"table"},{"x":350,"y":350,"type":"table"}]
+    var_data.data = [{"x":0.0,"y":0.5,"type":"chair"},{"x":10.5,"y":5.8,"type":"table"},{"x":102,"y":30,"type":"sitting"},{"x":502,"y":430,"type":"chair"},{"x":351,"y":120,"type":"table"}, {"x":650,"y":450,"type":"table"},{"x":0,"y":0,"type":"table"},{"x":350,"y":350,"type":"table"}]
     var_data.timestamp = new Date().getTime();
     now = new Date(var_data.timestamp);
     var_data.time = now.toLocaleDateString('ko-KR') + " " + now.toLocaleTimeString('ko-KR');
+    // for (let i = 0; i < var_data.data.length; i++) {
+    //     var_data.data[i].x = 700 * var_data.data[i].x / var_data.xmax;
+    //     var_data.data[i].y = 500 * var_data.data[i].y / var_data.ymax;
+    // }
     res.json(var_data);
 });
 
