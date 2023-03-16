@@ -1,6 +1,7 @@
 const express = require('express');
 const res = require('express/lib/response');
 const app = express();
+const axios = require('axios');
 const request = require('request');
 const requestIp = require('request-ip');
 const cors = require('cors');
@@ -22,25 +23,34 @@ function checkVaildIp(subnetIp, req){ // npm i request-ip
     return(guestIp.startsWith(subnetIp));
 }
 
-setInterval(() => {
-    request('http://10.18.246.255:8000/', (error, response, body) => {
-      // 응답 처리
-        if (!error) {
-            const json = body;
-            const json_obj = JSON.parse(json);
-            var_data.data = json_obj.data;
-            var_data.timestamp = new Date().getTime();
-            var_data.image = json_obj.image;
-            var_data.resolution = json_obj.resolution;
-            now = new Date(var_data.timestamp);
-            var_data.time = now.toLocaleDateString('ko-KR') + " " + now.toLocaleTimeString('ko-KR');
-            for (let i = 0; i < var_data.data.length; i++) {
-                var_data.data[i].x = 650 * var_data.data[i].x / var_data.resolution.width;
-                var_data.data[i].y = 450 * var_data.data[i].y / var_data.resolution.height;
-            }
+function requestData() {
+    axios({
+        method: "get", // 통신 방식
+        url: "http://10.18.246.255:8000/",
+        responseType: "json"
+    })
+    .then(function(Response) {
+        var json_obj = Response.data;
+        var_data.data = json_obj.data;
+        var_data.timestamp = new Date().getTime();
+        var_data.image = json_obj.image;
+        var_data.resolution = json_obj.resolution;
+        now = new Date(var_data.timestamp);
+        var_data.time = now.toLocaleDateString('ko-KR') + " " + now.toLocaleTimeString('ko-KR');
+        for (let i = 0; i < var_data.data.length; i++) {
+            var_data.data[i].x = 650 * var_data.data[i].x / var_data.resolution.width;
+            var_data.data[i].y = 450 * var_data.data[i].y / var_data.resolution.height;
         }
+    })
+    .catch(function (error) {
+        console.log(error.data);
+        var_data.timestamp = 0;
     });
-}, 3000);
+}
+
+setInterval(() => {
+    requestData();
+}, 5000);
 
 app.set('port', process.env.PORT || 4000);
 
@@ -72,36 +82,11 @@ app.get('/data', (req, res) => {
     // 데이터 확인
     now = new Date().getTime();
     if (var_data.timestamp == 0) {
+        setTimeout(() => requestData(), 3000);
+    }
         // 없거나  요청
         // const request = require('request');
-        const options = {
-            uri: "http://10.18.246.255:8000/"
-        };
-        function callback(error, response, body) {
-            if (error || response.statusCode != 200) {
-                res.status(500).send(error.message);
-            }
-            else {
-                // console.log('Get new data');
-                const json = body;
-                const json_obj = JSON.parse(json);
-                var_data.data = json_obj.data;
-                var_data.timestamp = new Date().getTime();
-                var_data.image = json_obj.image;
-                var_data.resolution = json_obj.resolution;
-                now = new Date(var_data.timestamp);
-                var_data.time = now.toLocaleDateString('ko-KR') + " " + now.toLocaleTimeString('ko-KR');
-                for (let i = 0; i < var_data.data.length; i++) {
-                    var_data.data[i].x = 650 * var_data.data[i].x / var_data.resolution.width;
-                    var_data.data[i].y = 450 * var_data.data[i].y / var_data.resolution.height;
-                }
-                res.json(var_data);
-            }
-        }
-        request(options, callback);
-    }
-    else
-        res.json(var_data);
+    res.json(var_data);
 });
 
 app.get('/datas', (req, res) => {
