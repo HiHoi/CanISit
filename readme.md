@@ -8,3 +8,22 @@
  - FastAPI (REST API)
  - NumPy (Mathematical)
 
+# API
+Media Type: application/json
+
+```python3
+response = {
+	resolution: {
+		width: int,
+		height: int
+	},
+	data: [
+		{
+			x: float,
+			y: float
+			type: str
+		}
+	],
+	image: base64.encode(img)
+}	
+```
