@@ -139,7 +139,7 @@ def find_nearest_person(persons, chairs, threshold):
 def root():
     frame_width, frame_height = [1280, 720]
 
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, frame_width)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, frame_height)
 
@@ -147,6 +147,7 @@ def root():
 
     persons = []
     chairs = []
+    tables = []
     ret, frame = cap.read()
     results = model(frame)
     for box in results[0].boxes:
@@ -157,8 +158,11 @@ def root():
         if label == 0:
             persons.append([x1, y1, x2, y2])
         # if label is chair, add to chairs list
-        elif label == 56:
+        elif label in [56, 57]:
             chairs.append([x1, y1, x2, y2])
+        # if table
+        elif label == 60:
+            tables.append([x1, y1, x2, y2])
         # draw other objects
         else:
             center_x = int((x1 + x2) / 2)
@@ -225,6 +229,19 @@ def root():
                 "x": center_x,
                 "y": center_y,
                 "type": "chair"
+            }
+        )
+
+    for table in tables:
+        center_x, center_y = calculate_center(table[0], table[1], table[2], table[3])
+        cv2.circle(frame, (int(center_x), int(center_y)), 20, [255, 255, 0], 2)
+        cv2.putText(frame, f"table", (int(center_x), int(center_y)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, [255, 255, 255],
+                    2)
+        payload["data"].append(
+        {
+                "x": center_x,
+                "y": center_y,
+                "type": "table"
             }
         )
 
