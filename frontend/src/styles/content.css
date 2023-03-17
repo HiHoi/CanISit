@@ -1,0 +1,91 @@
+.studio {
+    display: flex;
+    padding: auto;
+    margin: 0;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.showAvailable {
+    margin: 0;
+    padding: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px;
+    background-color: beige;
+}
+
+.showAvailable_percent {
+    font-size: 40px;
+    margin-left: 40%;
+}
+
+.trafficLight {
+    margin: auto;
+    align-items: center;
+    padding: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px;
+    background-color: blanchedalmond;
+}
+
+.TrafficLightContainer {
+    margin: auto;
+    width: 200px;
+    height: 70px;
+    border-radius: 50px;
+    background-color: #2c3e50;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.TrafficLightCircle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3); 
+    position: relative;
+}
+
+.TrafficLightCircle::after {
+    border-right: 4px solid rgba(255, 255, 255, 0.6);
+    content: '';
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+}
+
+.TrafficLightCircle.red {
+    box-shadow: 0 0 20px 5px #c0392b;
+    background-color: #c0392b;
+}
+
+.TrafficLightCircle.yellow {
+    box-shadow: 0 0 20px 5px yellow;
+    background-color: yellow;
+}
+
+.TrafficLightCircle.green {
+    box-shadow: 0 0 20px 5px green;
+    background-color: green;
+}
+
+.photo_container {
+    margin: 0;
+    padding: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px;
+    background-color: bisque;
+}
+
+.studio_photo {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    max-width: 100%;
+    max-height: 100%;
+}
