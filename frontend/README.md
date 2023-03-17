@@ -1,46 +1,79 @@
-# Getting Started with Create React App
+CanISee
+=========
+> 이 프로젝트는 42 서울에서 개최한 2023년도 해커톤에서 만들었습니다. 
+>(해커톤에 힘써주신 관계자 분들과 수고해주신 자원봉자사분들께 다시 한번 감사드립니다.)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## <목차>
+1. 개요
+* 프로젝트 명과 간단한 설명
+* 프로젝트 목적
+2. 설계
+* 사용한 기술과 도구
+* API 명세
+3. 주요 기능 및 특징
+* 주요한 기능 소개
+4. 개발 과정
+* 문제해결을 위한 생각한 방법들
+* 팀원 역할과 협업 방식
+5. 결과 및 시연
+* 프로젝트 결과물 소개
+* 프로젝트 시연 영상과 스크린샷
+6. 결론 (사견)
+   
+7. 참고 자료
+<hr/>
 
-## Available Scripts
+## 1. 개요
+### 프로젝트 명과 간단한 설명
+  프로젝트 명은 CanISee로,점심 및 저녁을 먹거나 팀프로젝트 토론을 위해 1층을 사용하려는 분들이
+일일이 자리가 있는지를 확인하는 수고를 덜어주기 위해 42서울 개포 클러스터 내에 있는 1층 오픈
+스튜디오의 의자 사용량을 체크하는 간단한 스트리밍 사이트를 만들었습니다.
 
-In the project directory, you can run:
+### 프로젝트 목적
+  실시간 스트리밍보단 내려가기 위한 시간대에 사용할 수 있는 의자가 있는지 파악을 하는 게 주된 목적이며
+이를 딥러닝 모델을 이용해 의자와 테이블, 사람을 감지해 수를 세주어 간단한 지표로 표시하였습니다.
+그리고 실시간 1층 상황을 조금이라도 쉽게 알기 위해 탐지 결과를 띄우는 등의 기능을 넣었습니다.
 
-### `npm start`
+## 2. 설계
+### 사용한 기술과 도구
+  이 프로젝트에서 사용한 기술은 크게 세 가지로 나눌 수 있습니다.   
+     
+첫 번째로는, 이 프로젝트를 위해 사용한 기술로는 딥러닝 탐지 모델인 Yolo v8가 있습니다.   
+두 번째로는, 탐지한 내용을 전달하는 역할로 벡엔드 부분에선 Node.js를 사용하였습니다.   
+세 번째로는, 이 결과를 화면에 띄워주기 위해 프론트 엔드 프레임 워크로 React를 이용했습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+제가 담당한 부분은 프론트엔드로 리액트를 사용하여 탐지한 결과를 잘 보여줄 수 있게 하였습니다.   
+그리고 자주 사용하던 자바 스크립트를 사용하기 보단 기술적인 안전성과 코드의 명확성을 높이기 위해 타입스크립트를 사용하였습니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### API 명세
+Media Type: application/json
 
-### `npm test`
+```python3
+response = {
+	resolution: {
+		width: int,
+		height: int
+	},
+	data: [
+		{
+			x: float,
+			y: float
+			type: str
+		}
+	],
+	image: base64.encode(img)
+}	
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 3. 주요 기능 및 특징
+리액트를 이용한 만큼 싱글페이지의 활용도를 높이기 위해 매 5초마다 데이터를 요청하고 만약 데이터를 불러올 수 없다면 이전에 있는 데이터를 불러올 수 있게 하였습니다.   
+그리고 반응형 웹 페이지를 위해 브레이크 포인트를 설정해주고 최대한 많은 기기에서 호환할 수 있게 설정했습니다.   
+저희는 다른 API를 가져오는 것보단 실시간 환경을 캡쳐해서 통신해야 했기에 직접 api를 만들었고 이를 토대로 탐지한 결과를 보기 좋게 화면에 띄울 수 있었습니다.   
 
-### `npm run build`
+## 4. 결과 및 시연
+![Alt text](./결과물.png "정상적으로 출력된 결과물")
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 5. 결론
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 6. 참고자료
+<https://www.notion.so/hoslim/2023-15ccfaa16b4f4404b033b7272b1dfdd9?pvs=4/>

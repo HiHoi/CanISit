@@ -55,6 +55,11 @@ const DesktopLayout = ({props} : any) => {
     useEffect(() => {
         getData()
         console.log(data)
+        let timer = setInterval(() => {
+            getData()
+            console.log(data)
+        }, 5000)
+        return () => clearInterval(timer)
     }, [])
 
     return (

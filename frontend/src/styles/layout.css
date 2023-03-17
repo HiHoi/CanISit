@@ -28,6 +28,9 @@ body {
     }
 
     .left_desktop {
+        display: flex;
+        flex-direction: column;
+        line-height: normal;
         position: relative;
         z-index: 1;
         padding: 2%;
@@ -121,6 +124,7 @@ body {
     }
 
     .left_tablet {
+        display: flex;
         position: relative;
         z-index: 1;
         padding: 2%;
