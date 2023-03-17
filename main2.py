@@ -143,7 +143,7 @@ def root():
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, frame_width)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, frame_height)
 
-    model = YOLO('yolov8n.pt')
+    model = YOLO('yolov8x.pt')
 
     persons = []
     chairs = []
