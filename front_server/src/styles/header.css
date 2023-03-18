@@ -1,0 +1,58 @@
+/* desktop & tablet header */
+@media only screen and (min-width: 768px){
+ 
+    .header {
+        margin: 0;
+        z-index: 2;
+        justify-content: flex-start;
+        height: 75px;
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #FEC81E;
+    }
+
+    .logo {
+        margin-left: 100px;
+        padding: 5px;
+    }
+
+    .logoName {
+        margin-left: 130px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: white;
+        padding: 5px;
+    }   
+}
+
+/* mobile header */
+@media only screen and (max-width: 767px){
+ 
+    .header {
+        margin: 0;
+        z-index: 2;
+        justify-content: flex-start;
+        height: 75px;
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #FEC81E;
+    }
+
+    .logo {
+        margin-left: 100px;
+        padding: 5px;
+    }
+
+    .logoName {
+        margin-left: 50px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: white;
+        padding: 5px;
+    }   
+}
+
