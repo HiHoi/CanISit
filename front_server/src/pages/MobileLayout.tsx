@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import url from "../Config";
 import Header from "./Header";
 import Footer from "./Footer";
 import DrawStudio from "./DrawStudio";
@@ -29,7 +30,7 @@ const MobileLayout = ({props} : any) => {
 
     const getData = async () => {
         try {
-            const res = await fetch("http://localhost:4000/data");
+            const res = await fetch(url);
             const fetchData = await res.json();
             const initData = (it: any) => {
                 const info: Info = {
