@@ -23,7 +23,7 @@ function checkVaildIp(subnetIp, req){
 function requestData() {
     axios({
         method: "get",
-        url: "http://10.18.246.255:8000/",
+        url: "http://localhost:8000/",
         responseType: "json"
     })
     .then(function(Response) {
