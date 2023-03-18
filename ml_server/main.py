@@ -259,4 +259,4 @@ def root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main2:app", port=8000, reload=True, host="10.18.246.255")
+    uvicorn.run("main:app", port=8000, reload=True, host="10.18.246.255")
