@@ -76,4 +76,4 @@ response = {
 ## 5. 결론
 
 ## 6. 참고자료
-<https://www.notion.so/hoslim/2023-15ccfaa16b4f4404b033b7272b1dfdd9?pvs=4/>
+<https://hoslim.notion.site/2023-15ccfaa16b4f4404b033b7272b1dfdd9/>
