@@ -71,7 +71,7 @@ response = {
 			x: float,
 			y: float,
 			type: str,
-            time: str
+            		time: str
 		}
 	],
 	image: base64.encode(img)
