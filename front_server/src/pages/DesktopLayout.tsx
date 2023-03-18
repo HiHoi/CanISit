@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
+import url from "../Config";
 import Header from "./Header";
 import Footer from "./Footer";
 import DrawStudio from "./DrawStudio";
@@ -30,7 +31,7 @@ const DesktopLayout = ({props} : any) => {
 
     const getData = async () => {
         try {
-            const res = await fetch("http://localhost:4000/data");
+            const res = await fetch(url);
             const fetchData = await res.json();
             console.log(fetchData)
             const initData = (it: any) => {
