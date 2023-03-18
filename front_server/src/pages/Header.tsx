@@ -9,7 +9,7 @@ const Header = () => {
                 {/* <img className="logo" alt="1floor" 
                 src="imgs/logo_64.ico" /> */}
             </div>
-            <h1 className="logoName"> CanISee </h1>
+            <h1 className="logoName"> CanISit </h1>
         </header>
     );
 }
