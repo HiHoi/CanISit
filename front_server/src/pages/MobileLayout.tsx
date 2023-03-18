@@ -29,7 +29,7 @@ const MobileLayout = ({props} : any) => {
 
     const getData = async () => {
         try {
-            const res = await fetch("http://10.18.243.73:4000/data");
+            const res = await fetch("http://localhost:4000/data");
             const fetchData = await res.json();
             const initData = (it: any) => {
                 const info: Info = {
