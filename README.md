@@ -1,5 +1,12 @@
-CanISee
-=========
+<h1 align="center">Can I Sit?</h1>
+
+<h3 align="center">머신러닝을 활용한 착좌 감지 시스템</h3>
+
+<p align="center">
+	<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FHiHoi%2FCanISit&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+	<img alt="GitHub" src="https://img.shields.io/github/license/HiHoi/CanISit">
+</p>
+
 > 이 프로젝트는 42 서울에서 개최한 2023년도 해커톤에서 만들었습니다. 
 >(해커톤에 힘써주신 관계자 분들과 수고해주신 자원봉자사분들께 다시 한번 감사드립니다.)
 
