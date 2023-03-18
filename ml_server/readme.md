@@ -27,3 +27,11 @@ response = {
 	image: base64.encode(img)
 }	
 ```
+
+# 실행
+ultralytics package는 **curr <= Python 3.9** 가 필요합니다.
+
+```shell
+pip install -r requirments.txt
+python main.py
+```
