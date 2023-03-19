@@ -1,14 +1,14 @@
 {
   "short_name": "CanISee",
-  "name": "Create React App Sample",
+  "name": "CanISee",
   "icons": [
     {
-      "src": "logo_64.ico",
+      "src": "apple-icon-60x60.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo_196.png",
+      "src": "apple-icon-precomposed.png",
       "type": "image/png",
       "sizes": "192x192"
     },
